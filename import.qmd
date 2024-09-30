@@ -1,6 +1,6 @@
 ---
 title: "Import practical"
-author: Your name here
+author: Panagiotis Valsamis
 date: today
 format: html
 ---
@@ -29,6 +29,8 @@ We will take advantage of the RStudio projects and store data files in a sub-fol
 
 ```{r}
 # Your answer in code
+library(readr)
+
 
 ```
 
@@ -78,6 +80,8 @@ For example, you folder structure could be (depending on the picked names) as he
 
 ```{r}
 # Your answer in code
+readr::read_delim("data/blood_fat.csv")
+
 
 ```
 
@@ -92,6 +96,10 @@ If we are happy with the guessed delimiter and the column names / types, we coul
 
 ```{r}
 # Your answer in code
+blood_file <- "data/blood_fat.csv"
+readr::read_delim(blood_file,
+            col_names=FALSE,
+            show_col_types=FALSE)
 
 
 ```
@@ -108,7 +116,7 @@ If we are happy with the guessed delimiter and the column names / types, we coul
 
 > Your answer as text
 
-
+26 rows and 5 columns
 
 - The columns of a tibble report their type:
 
@@ -116,6 +124,11 @@ If we are happy with the guessed delimiter and the column names / types, we coul
 
 > Your answer as text
 
+id=double
+group=character
+weight=double
+age=double
+fat=double
 
 
 Actually, both `age` and `id` are **integers**, and should be read as such.
@@ -131,7 +144,11 @@ In the `col_types = cols(....)` you can use the columns bare names and either th
 
 ```{r}
 # Your answer in code
-
+readr::read_delim(blood_file,
+                  col_types=cols(
+                    age="i",
+                    id="i"
+                  ))
 
 
 ```
@@ -141,6 +158,12 @@ In the `col_types = cols(....)` you can use the columns bare names and either th
 
 ```{r}
 # Your answer in code
+readr::read_delim(blood_file,
+                  col_types=cols(
+                  age="i",
+                  id="i",
+                  weight="_"
+                  ))
 
 
 
